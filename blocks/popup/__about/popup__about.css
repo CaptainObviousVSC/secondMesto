@@ -1,0 +1,5 @@
+@import url(./_input/popup__about_input.css);
+.popup__about {
+    display: flex;
+      flex-direction: column;
+  }
