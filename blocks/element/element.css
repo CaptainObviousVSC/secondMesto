@@ -3,6 +3,9 @@
 @import url(./__textbox/element__textbox.css);
 @import url(./__title/element__title.css);
 .element {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     width: 282px;
     height: 362px;
     border: 1px solid #000000;

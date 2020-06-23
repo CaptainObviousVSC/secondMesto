@@ -1,9 +1,12 @@
 .element__like {
-    background-image: url(../../../photo/like.jpg);
+    background-image: url(../../../images/like.jpg);
     min-width: 23px;
     min-height: 21px;
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: none;
     border: none;
+}
+.element__like:hover {
+    opacity: 0.6;
 }

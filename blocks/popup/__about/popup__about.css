@@ -1,5 +1,7 @@
-@import url(./_input/popup__about_input.css);
+
 .popup__about {
-    display: flex;
-      flex-direction: column;
+  border: none;
+     border-bottom: 1px solid #000000;
+     font-size: 14px;
+line-height: 17px;
   }
