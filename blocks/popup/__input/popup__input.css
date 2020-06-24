@@ -1,0 +1,9 @@
+@import URL(./_about/popup__input_about.css);
+.popup__input {
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-size: 14px;
+    line-height: 17px;
+    padding-bottom: 14px;
+}
