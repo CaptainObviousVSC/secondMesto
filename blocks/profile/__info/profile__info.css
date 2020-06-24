@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: baseline;
+    justify-content: space-between;
     width: 336px;
     max-height: 77px;
     margin-top: 18px;

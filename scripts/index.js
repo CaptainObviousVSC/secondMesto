@@ -5,8 +5,8 @@ const popupSaveButton = popup.querySelector('.popup__save');
 const name = document.querySelector('.profile__name');
 const about = document.querySelector('.profile__description');
 const form = document.querySelector('.popup__form');
-const nameInput = form.querySelector('.popup__input');
-const aboutInput = form.querySelector('.popup__input_about');
+const nameInput = form.elements.name;
+const aboutInput = form.elements.about;
 
 
 function popupToggle () {
