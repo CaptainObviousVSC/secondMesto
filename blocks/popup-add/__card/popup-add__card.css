@@ -1,5 +1,5 @@
-@import URL(./_about/popup__input_about.css);
-.popup__input {
+@import url(./_link/popup-add__card_link.css);
+.popup-add__card {
     margin-bottom: 30px;
     border: none;
     border-bottom: 1px solid #000000;
@@ -7,6 +7,6 @@
     line-height: 17px;
     padding-bottom: 14px;
 }
-.popup__input:last-of-type {
+.popup-add__card:last-of-type {
     margin-bottom: 0;
 }

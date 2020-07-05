@@ -6,7 +6,6 @@
 @import url(./__edit/profile__edit.css);
 @import url(./__info/profile__info.css);
 @import url(./__name/profile__name.css);
-@import url(./__open-popup/profile__open-popup.css);
 .profile {
     max-width: 882px;
     display: flex;

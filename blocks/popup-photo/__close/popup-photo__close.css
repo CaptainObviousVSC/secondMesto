@@ -1,4 +1,4 @@
-.popup__close {
+.popup-photo__close {
     position: absolute;
     z-index: -1;
     top: -37px;
@@ -10,6 +10,6 @@
     background-size: auto;
     background-position: center;
   }
-  .popup__close:hover {
+  .popup-photo__close:hover {
     opacity: 0.6;
   }
