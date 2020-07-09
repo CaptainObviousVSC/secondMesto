@@ -91,19 +91,21 @@ function popupAddSave (evt) {
   const nameOfNewCard = named.value;
   const imageOfNewCard = linked.value;
   const newCard = {nameOf: nameOfNewCard, link: imageOfNewCard};
-  addCard(newCard);
   popupAddToggle ()
+  renderCard(newCard, cardElements)
 }
 function removeCard(evt){
   const element = evt.target.closest('.element');
   element.remove();
-}
+};
+
 function addCard(newCard) {
   const card = cardTemplate.content.cloneNode(true);
   card.querySelector('.element__title').textContent = newCard.nameOf;
-  card.querySelector('.element__img').src = newCard.link;
-  card.querySelector('.element__img').alt = newCard.alt;
-  card.querySelector('.element__img').addEventListener('click', function() {
+  const cardImage = card.querySelector('.element__img');
+  cardImage.src = newCard.link;
+  cardImage.alt = newCard.alt;
+  cardImage.addEventListener('click', function() {
     photoPopup(newCard)
   });
     card.querySelector('.element__remove').addEventListener('click', removeCard);
@@ -111,10 +113,14 @@ function addCard(newCard) {
   like.addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active')
   });
+  return card;
+};
+const renderCard = (newCard, cardElements) => {
+  const card = addCard(newCard);
   cardElements.prepend(card);
 };
 initialCards.forEach (newCard => {
-  addCard(newCard);
+  renderCard(newCard, cardElements)
   });
   formCard.addEventListener('submit', popupAddSave)
 function photoPopup(newCard) {
@@ -124,4 +130,3 @@ popupName.textContent = place;
 popupImage.src = image;
 popupPhotoToggle()
 }
-
