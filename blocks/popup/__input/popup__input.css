@@ -1,4 +1,5 @@
-@import URL(./_about/popup__input_about.css);
+@import url(./_value-1/popup__input_value-1.css);
+@import url(./_value-2/popup__input_value-2.css);
 .popup__input {
     margin-bottom: 30px;
     border: none;
