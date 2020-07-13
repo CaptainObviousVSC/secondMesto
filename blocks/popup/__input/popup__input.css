@@ -1,5 +1,7 @@
-@import url(./_value-1/popup__input_value-1.css);
-@import url(./_value-2/popup__input_value-2.css);
+@import url(./_value-name/popup__input_value-name.css);
+@import url(./_value-description/popup__input_value-description.css);
+@import url(./_value-place/popup__input_value-place.css);
+@import url(./_value-link/popup__input_value-link.css);
 .popup__input {
     margin-bottom: 30px;
     border: none;

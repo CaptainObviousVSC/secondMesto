@@ -7,8 +7,8 @@ const popupOpenButtonAdd =document.querySelector('.profile__add');
 const popupCloseButtonEdite = popupEdite.querySelector('.popup__close');
 const popupCloseButtonAdd = popupAdd.querySelector('.popup__close');
 const popupCloseButtonPhoto = popupPhoto.querySelector('.popup__close');
-const titleInput = popupAdd.querySelector('.popup__input_value-3');
-const linkInput = popupAdd.querySelector('.popup__input_value-4');
+const titleInput = popupAdd.querySelector('.popup__input_value-place');
+const linkInput = popupAdd.querySelector('.popup__input_value-link');
 const name = document.querySelector('.profile__name');
 const about = document.querySelector('.profile__description');
 const form = document.querySelector('.popup__form');
@@ -22,8 +22,11 @@ const popupImage = document.querySelector('.popup__img');
 const popupName = document.querySelector('.popup__box-title');
 const nameInput = form.elements.name;
 const aboutInput = form.elements.about;
-const popupToggle =  (popup) => {
-  popup.classList.toggle('popup_opened');
+const popupOpen =  (popup) => {
+  popup.classList.add('popup_opened');
+}
+const popupClose = (popup) => {
+  popup.classList.remove('popup_opened')
 }
 function popupEditeToggle () {
   if (!popupEdite.classList.contains('popup_opened')) {    
@@ -34,21 +37,21 @@ function popupEditeToggle () {
 };
 popupOpenButtonEdite.addEventListener('click', popupEditeToggle);
   popupCloseButtonEdite.addEventListener('click', () => {
-   popupToggle(popupEdite)});
+    popupClose(popupEdite)});
   
  popupOpenButtonAdd.addEventListener('click', () => {
-   popupToggle(popupAdd)});
+  popupOpen(popupAdd)});
  popupCloseButtonAdd.addEventListener('click', () => {
-   popupToggle(popupAdd)});
+  popupClose(popupAdd)});
   
   popupCloseButtonPhoto.addEventListener('click', () => {
-  popupToggle(popupPhoto)}); 
+    popupClose(popupPhoto)}); 
  
   function formSubmitHandler (evt) {
     evt.preventDefault(); 
       name.textContent =  nameInput.value;
    about.textContent = aboutInput.value;
-    popupToggle(popupEdite);
+   popupClose(popupEdite);
    }
   
  
@@ -93,7 +96,7 @@ function popupAddSave (evt) {
   const nameOfNewCard = titleInput.value;
   const imageOfNewCard = linkInput.value;
   const newCard = {nameOf: nameOfNewCard, link: imageOfNewCard};
-  popupToggle(popupAdd)
+  popupClose(popupAdd)
   renderCard(newCard, cardElements)
 }
 function removeCard(evt){
@@ -130,6 +133,6 @@ const image = newCard.link;
 const place = newCard.nameOf;
 popupName.textContent = place;
 popupImage.src = image;
-  popupToggle(popupPhoto)
+popupOpen(popupPhoto)
 }
 
