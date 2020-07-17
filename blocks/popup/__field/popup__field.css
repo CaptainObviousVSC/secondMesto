@@ -1,0 +1,9 @@
+
+.popup__field {
+    margin-bottom: 30px;
+    min-height: 44px;
+    min-width: 358px;
+}
+.popup__field:last-of-type {
+    margin-bottom: 0;
+}

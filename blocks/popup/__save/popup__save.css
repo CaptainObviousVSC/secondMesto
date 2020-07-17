@@ -1,4 +1,5 @@
-.popup__save {
+@import url(./_disabled/popup__save_disabled.css);
+.popup__save{
     width: 358px;
     height: 51px;
     background: black;

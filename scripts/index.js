@@ -40,7 +40,8 @@ popupOpenButtonEdite.addEventListener('click', popupEditeToggle);
     popupClose(popupEdite)});
   
  popupOpenButtonAdd.addEventListener('click', () => {
-  popupOpen(popupAdd)});
+  popupOpen(popupAdd)
+  toggleButtonState(inputs, submitButtonActive, rest)});
  popupCloseButtonAdd.addEventListener('click', () => {
   popupClose(popupAdd)});
   
