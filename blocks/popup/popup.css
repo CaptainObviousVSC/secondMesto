@@ -11,7 +11,6 @@
 @import url(./_photo/popup_photo.css);
 @import url(./__box-title/popup__box-title.css);
 @import url(./__error/popup__error.css);
-@import url(./__field/popup__field.css);
 .popup {
   position: fixed;
   display: flex;

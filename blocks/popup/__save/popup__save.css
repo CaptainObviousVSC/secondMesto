@@ -3,7 +3,7 @@
     width: 358px;
     height: 51px;
     background: black;
-    border-radius: 2px;
+    border-radius: 10px;
     margin-top: 48px;
     margin-bottom: 37px;
     border: none;
@@ -18,7 +18,7 @@
 .popup__save:hover {
     opacity: 0.6;
 }
-@media all and (max-width:320px) {
+@media all and (max-width:450px) {
     .popup__save {
         max-width: 200px;
         margin-left: 25px;
