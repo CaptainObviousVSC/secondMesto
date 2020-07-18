@@ -20,7 +20,7 @@ function enableValidation({ formSelector, ...rest }) {
 function setListeners(form, { inputSelector, submitButtonSelector, ...rest }) {
     const inputs = Array.from(form.querySelectorAll(inputSelector))
     const submitButtonActive = form.querySelector(submitButtonSelector)
-    toggleButtonState(inputs, submitButtonActive, rest)
+    //toggleButtonState(inputs, submitButtonActive, rest)
     inputs.forEach(input => {
         input.addEventListener('input', e => {
            isValid(input, rest)
@@ -29,7 +29,6 @@ function setListeners(form, { inputSelector, submitButtonSelector, ...rest }) {
  })
 }
 function isValid(input, {...rest}) {
-    console.log('hello')
     const inputName = input.getAttribute('name')
         const errorPlace = document.getElementById(`${inputName}-error`)
     if (!input.validity.valid) {

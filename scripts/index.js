@@ -1,4 +1,4 @@
-
+const popup = document.querySelector('.popup')
 const popupEdite = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupPhoto = document.querySelector('.popup_photo');
@@ -24,29 +24,58 @@ const nameInput = form.elements.name;
 const aboutInput = form.elements.about;
 const popupOpen =  (popup) => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keyup', () => {
+    closePopupByEsc(event, popup)
+  })
 }
+
 const popupClose = (popup) => {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keyup', () => {
+    closePopupByEsc(event, popup)
+  })
 }
+const closePopupByOverlay = (event, popup) => {
+  if(event.target === event.currentTarget) {popupClose(popup)}
+}
+function closePopupByEsc(event, popup)  {
+  if(event.key === "Escape") {popupClose(popup)}
+}
+popupEdite.addEventListener('click', () => {
+  closePopupByEsc(event, popupEdite);
+  closePopupByOverlay(event, popupEdite)
+})
+popupAdd.addEventListener('click', () => {
+  closePopupByEsc(event, popupAdd);
+ closePopupByOverlay(event, popupAdd)
+})
+popupPhoto.addEventListener('click', () => {
+  closePopupByEsc(event, popupPhoto);
+  closePopupByOverlay(event, popupPhoto)
+})
 function popupEditeToggle () {
   if (!popupEdite.classList.contains('popup_opened')) {    
       nameInput.value = name.textContent;
       aboutInput.value = about.textContent;
   };
-  popupEdite.classList.toggle('popup_opened');
+
+  popupOpen(popupEdite)
 };
 popupOpenButtonEdite.addEventListener('click', popupEditeToggle);
   popupCloseButtonEdite.addEventListener('click', () => {
-    popupClose(popupEdite)});
+    popupClose(popupEdite);
+  });
   
  popupOpenButtonAdd.addEventListener('click', () => {
   popupOpen(popupAdd)
-  toggleButtonState(inputs, submitButtonActive, rest)});
+})
  popupCloseButtonAdd.addEventListener('click', () => {
-  popupClose(popupAdd)});
+  popupClose(popupAdd);
+});
   
   popupCloseButtonPhoto.addEventListener('click', () => {
-    popupClose(popupPhoto)}); 
+    popupClose(popupPhoto);
+  }); 
  
   function formSubmitHandler (evt) {
     evt.preventDefault(); 
