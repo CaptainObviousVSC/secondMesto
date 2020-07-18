@@ -17,7 +17,7 @@
 }
 @media all and (max-width:450px) {
     .popup__input {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin: 0 auto;
+        width: 200px;
     }
 }
