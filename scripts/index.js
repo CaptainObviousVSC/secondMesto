@@ -22,6 +22,12 @@ const popupImage = document.querySelector('.popup__img');
 const popupName = document.querySelector('.popup__box-title');
 const nameInput = form.elements.name;
 const aboutInput = form.elements.about;
+const closePopupByEsc = (evt) => {
+  const closeEachPopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closeEachPopup.classList.remove('popup_opened')
+  }
+}
 const popupOpen = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupByEsc)
@@ -32,15 +38,9 @@ const popupClose = (popup) => {
   document.removeEventListener('keyup', closePopupByEsc)
 }
 const closePopupByOverlay = (evt) => {
- 
+
   if (evt.target === evt.currentTarget) {
     popupClose(evt.currentTarget)
-  }
-}
-function closePopupByEsc(evt) {
-  const closeEachPopup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
-    closeEachPopup.classList.remove('popup_opened')
   }
 }
 popupEdite.addEventListener('click', closePopupByOverlay)
@@ -126,7 +126,13 @@ function removeCard(evt) {
   const element = evt.target.closest('.element');
   element.remove();
 };
-
+const photoPopup = (newCard) => {
+  const image = newCard.link;
+  const place = newCard.nameOf;
+  popupName.textContent = place;
+  popupImage.src = image;
+  popupOpen(popupPhoto)
+}
 function addCard(newCard) {
   const card = cardTemplate.content.cloneNode(true);
   card.querySelector('.element__title').textContent = newCard.nameOf;
@@ -151,11 +157,5 @@ initialCards.forEach(newCard => {
   renderCard(newCard, cardElements)
 });
 formAdd.addEventListener('submit', popupAddSave);
-function photoPopup(newCard) {
-  const image = newCard.link;
-  const place = newCard.nameOf;
-  popupName.textContent = place;
-  popupImage.src = image;
-  popupOpen(popupPhoto)
-}
+
 
