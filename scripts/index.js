@@ -1,3 +1,38 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js'
+const initialCards = [
+  {
+    nameOf: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    nameOf: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    nameOf: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    nameOf: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    nameOf: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    nameOf: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+ const config = ({
+   inputSelector: '.popup__input',
+      submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+ });
 const popup = document.querySelector('.popup')
 const popupEdite = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
@@ -14,12 +49,9 @@ const about = document.querySelector('.profile__description');
 const form = document.querySelector('.popup__form');
 const formAdd = document.querySelector('.popup__form_add');
 const cardElements = document.querySelector('.elements');
-const nameOfCard = document.querySelector('.element__title');
-const linkOfCard = document.querySelector('.element__img');
-const popupAddForm = popupAdd.querySelector('.popup__form');
-const cardTemplate = document.querySelector('.elements-template');
 const popupImage = document.querySelector('.popup__img');
 const popupName = document.querySelector('.popup__box-title');
+const myForm = document.querySelector('.popup__form')
 const nameInput = form.elements.name;
 const aboutInput = form.elements.about;
 const closePopupByEsc = (evt) => {
@@ -80,82 +112,25 @@ function formSubmitHandler(evt) {
 
 form.addEventListener('submit', formSubmitHandler);
 
-
-const initialCards = [
-  {
-    nameOf: 'Архыз',
-    alt: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    nameOf: 'Челябинская область',
-    alt: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    nameOf: 'Иваново',
-    alt: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    nameOf: 'Камчатка',
-    alt: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    nameOf: 'Холмогорский район',
-    alt: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    nameOf: 'Байкал',
-    alt: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
+function renderCard(initialCards) {
+  const card = new Card(initialCards);
+  const cardElement = card.addCard();
+  cardElements.prepend(cardElement);
+}
+initialCards.forEach((initialCards) => {
+  renderCard(initialCards)
+});
 function popupAddSave(evt) {
   evt.preventDefault();
   const nameOfNewCard = titleInput.value;
   const imageOfNewCard = linkInput.value;
   const newCard = { nameOf: nameOfNewCard, link: imageOfNewCard };
   popupClose(popupAdd)
-  renderCard(newCard, cardElements)
+  renderCard(newCard)
 }
-function removeCard(evt) {
-  const element = evt.target.closest('.element');
-  element.remove();
-};
-const photoPopup = (newCard) => {
-  const image = newCard.link;
-  const place = newCard.nameOf;
-  popupName.textContent = place;
-  popupImage.src = image;
-  popupOpen(popupPhoto)
-}
-function addCard(newCard) {
-  const card = cardTemplate.content.cloneNode(true);
-  card.querySelector('.element__title').textContent = newCard.nameOf;
-  const cardImage = card.querySelector('.element__img');
-  cardImage.src = newCard.link;
-  cardImage.alt = newCard.nameOf;
-  cardImage.addEventListener('click', function () {
-    photoPopup(newCard)
-  });
-  card.querySelector('.element__remove').addEventListener('click', removeCard);
-  const like = card.querySelector('.element__like');
-  like.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active')
-  });
-  return card;
-};
-const renderCard = (newCard, cardElements) => {
-  const card = addCard(newCard);
-  cardElements.prepend(card);
-};
-initialCards.forEach(newCard => {
-  renderCard(newCard, cardElements)
-});
 formAdd.addEventListener('submit', popupAddSave);
-
-
+const formEditVaLidation = new FormValidator(config, myForm)
+formEditVaLidation.enableValidation()
+const formAddVaLid = new FormValidator(config, myForm)
+formAddVaLid.enableValidation()
+export { popupImage, popupName, popupOpen, popupPhoto };
