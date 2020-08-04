@@ -1,17 +1,14 @@
-import { popupImage, popupName, popupOpen, popupPhoto } from './index.js'
+import { popupImage, popupName, popupOpen, popupPhoto} from './index.js'
 export class Card {
-    constructor(data, _getTemplate) {
+    constructor(data, cardTemplate) {
       this.name = data.nameOf
       this.link = data.link
+      this._cardTemplate = cardTemplate
       this._element = this._getTemplate()
       this.image = this._element.querySelector('.element__img')
   }
     _getTemplate() {
-      const cardElement = document
-      .querySelector('.elements-template')
-      .content
-      .querySelector('.element')
-      .cloneNode(true);
+      const cardElement = document.querySelector(this._cardTemplate).content.querySelector('.element').cloneNode(true);
         return cardElement
     }
   _removeCard(evt) {

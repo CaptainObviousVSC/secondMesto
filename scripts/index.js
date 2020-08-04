@@ -49,6 +49,7 @@ const about = document.querySelector('.profile__description');
 const form = document.querySelector('.popup__form');
 const formAdd = document.querySelector('.popup__form_add');
 const cardElements = document.querySelector('.elements');
+const cardTemplate = document.querySelector('.elements-template')
 const popupImage = document.querySelector('.popup__img');
 const popupName = document.querySelector('.popup__box-title');
 const myForm = document.querySelector('.popup__form')
@@ -57,7 +58,7 @@ const aboutInput = form.elements.about;
 const closePopupByEsc = (evt) => {
   const closeEachPopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    closeEachPopup.classList.remove('popup_opened')
+    popupClose(closeEachPopup)
   }
 }
 const popupOpen = (popup) => {
@@ -113,7 +114,7 @@ function formSubmitHandler(evt) {
 form.addEventListener('submit', formSubmitHandler);
 
 function renderCard(initialCards) {
-  const card = new Card(initialCards);
+  const card = new Card(initialCards, '.elements-template');
   const cardElement = card.addCard();
   cardElements.prepend(cardElement);
 }
@@ -133,4 +134,4 @@ const formEditVaLidation = new FormValidator(config, myForm)
 formEditVaLidation.enableValidation()
 const formAddVaLid = new FormValidator(config, myForm)
 formAddVaLid.enableValidation()
-export { popupImage, popupName, popupOpen, popupPhoto };
+export { popupImage, popupName, popupOpen, popupPhoto};
