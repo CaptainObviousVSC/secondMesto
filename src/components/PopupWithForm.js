@@ -23,6 +23,7 @@ setEventListeners() {
 this._formSubmitHandler(data)
 this.close()
     })
+   
     super.setEventListeners()
 }
 }
