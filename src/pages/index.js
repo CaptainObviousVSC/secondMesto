@@ -22,8 +22,10 @@ function rendering(data) {
     cardRender.addItems(cardElement)
 }
 const userInfo = new UserInfo({name: name, about: about})
-const popupEditeWithForm = new PopupWithForm('popup',({ name, about }) => {
-  userInfo.setUserInfo({name, about})
+const popupEditeWithForm = new PopupWithForm('popup', {
+  formSubmitHandler: ({name, about}) => {
+    userInfo.setUserInfo({name, about})
+  }
 })
 popupEditeWithForm.setEventListeners()
 popupOpenButtonEdite.addEventListener('click', () => {
