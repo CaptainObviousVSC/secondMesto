@@ -32,24 +32,21 @@ popupOpenButtonEdite.addEventListener('click', () => {
   aboutInput.value = profile.about
     formEditVaLidation.clearAllErrors()
      formEditVaLidation.buttonActive()
-     console.log( formEditVaLidation)
   popupEditeWithForm.open()
 })
 
-const popupAddWithForm = new PopupWithForm('popup_add', popupAddSave)
+const popupAddWithForm = new PopupWithForm('popup_add', {
+  formSubmitHandler:(data)=> {
+    rendering( { nameOf: data.place, link: data.link } )
+    popupAddWithForm.close()
+  }
+  })
 popupOpenButtonAdd.addEventListener('click', () => {
   formAddVaLid.clearAllErrors()
   formAddVaLid.buttonInactive()
     formAddVaLid.clearInput()
   popupAddWithForm.open()
 })
-function popupAddSave() {
-  const nameOfNewCard = titleInput.value;
-  const imageOfNewCard = linkInput.value;
-  const newCard = { nameOf: nameOfNewCard, link: imageOfNewCard };
-   rendering(newCard)
-    popupAddWithForm.close()
-}
 popupAddWithForm.setEventListeners()
 const formEditVaLidation = new FormValidator(config, myForm)
 formEditVaLidation.enableValidation()
