@@ -64,11 +64,10 @@ return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
         return Promise.reject(`Ошибка: ${res.status}`)
       })
   }
-    deleteCard() {
+    deleteCard(cardId) {
 return fetch(`${this.baseUrl}/cards/${cardId}`, {
   method: 'DELETE',
-      headers: this.headers
-}) .then(res => {
+      headers: this.headers}) .then(res => {
   if (res.ok) {
     return res.json()
   }

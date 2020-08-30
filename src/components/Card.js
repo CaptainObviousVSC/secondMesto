@@ -38,10 +38,10 @@ renderLikes() {
       const cardElement = document.querySelector(this._cardTemplate).content.querySelector('.element').cloneNode(true);
         return cardElement
     }
-  removeCard() {
-    this._element.remove();
-     this._element = null
-  }
+    removeCard() { 
+      this._element.remove(); 
+      this._element = null
+    } 
   _setLike(evt) {
     evt.target.classList.toggle('element__like_active')
   }
@@ -50,14 +50,14 @@ renderLikes() {
       this._handleCardClick()
     });
      this._element.querySelector('.element__remove').addEventListener('click', () => {
-      this._handleDeleteIconClick()
-     });
+      this._handleDeleteIconClick(this._id)
+     } );
     this._like.addEventListener('click', () => {
       this._like.classList.toggle('element__like_active')
       if(this._like.classList.contains('element__like_active')) {
-        this._handleLikeClick()
+        this._handleLikeClick(this._id)
       } else {
-        this._handleDislikeClick()
+        this._handleDislikeClick(this._id)
       }
      }); 
   }

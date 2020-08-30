@@ -44,24 +44,26 @@ api.getAppInfo().then(res => {
       popupWithImage.open(data)
 
     },
-    handleLikeClick: () => {
-      api.likeCard(data._id).then (res => {
+    handleLikeClick: (id) => {
+      api.likeCard(id).then (res => {
         card.updateLikes(res.likes)
       }).catch(err => console.error(err))
     },
-    handleDislikeClick: () => {
-      api.DislikeCard(data._id).then (res => {
+    handleDislikeClick: (id) => {
+      api.DislikeCard(id).then (res => {
         card.updateLikes(res.likes)
       }).catch(err => console.error(err))
     },
-    handleDeleteIconClick: () => {
+    handleDeleteIconClick: (id) => {
        popupWithSubmit.setSubmitAction(() => {
-         api.deleteCard(data._id).then(res => {
-           card.removeCard(res)
+         console.log(id)
+         api.deleteCard(id).then(() => {
+           card.removeCard()
            popupWithSubmit.close()
-         }).catch(err => console.error(err))
+         })
        })
-       popupWithSubmit.open()
+        popupWithSubmit.open()
+       
     }
    }, '.elements-template');
     const cardElement = card.addCard();
@@ -76,8 +78,6 @@ api.getAppInfo().then(res => {
           preloaderForPopups(true, submitButton)
           const dataToSend = {name: item.place, link: item.link}
            api.createCard(dataToSend).then(res => {
-            console.log(res)
-            // const dataToSend = {name: res.name, link: res.link, _id: res._id, likes: res.likes}
           rendering(res)
             })
             .catch(err => console.error(err))
@@ -126,6 +126,7 @@ api.getAppInfo().then(res => {
       popupAddWithForm.setEventListeners()
      popupAvatarWithForm.setEventListeners()
     popupEditeWithForm.setEventListeners()
+    popupWithSubmit.setEventListeners()
     cardRender.renderItems()
     return {
       userInfo,

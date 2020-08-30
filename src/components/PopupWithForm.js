@@ -17,7 +17,7 @@ _getInputValues() {
     return this._formValues
 }
 setEventListeners() {
-    this._popup.querySelector('.popup__form').addEventListener('submit', (evt) => {
+    this._popup.addEventListener('submit', (evt) => {
         evt.preventDefault()
         const data = this._getInputValues()
 this._formSubmitHandler(data)
