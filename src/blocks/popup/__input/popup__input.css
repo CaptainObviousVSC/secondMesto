@@ -3,6 +3,7 @@
 @import url(./_value-place/popup__input_value-place.css);
 @import url(./_value-link/popup__input_value-link.css);
 @import url(./_type_error/popup__input_type_error.css);
+@import url(./_value-avatar/popup__input_value-avatar.css);
 .popup__input {
     border: none;
     border-bottom: 1px solid #000000;

@@ -21,9 +21,8 @@ setEventListeners() {
         evt.preventDefault()
         const data = this._getInputValues()
 this._formSubmitHandler(data)
-this.close()
     })
    
-    super.setEventListeners()
+     super.setEventListeners()
 }
 }

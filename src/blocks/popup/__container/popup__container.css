@@ -1,3 +1,5 @@
+@import url(./_avatar/popup__container_avatar.css);
+@import url(./_confirm/popup__container_confirm.css);
 .popup__container {
     position: relative;
     width: 430px;

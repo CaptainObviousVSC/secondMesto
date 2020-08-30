@@ -1,5 +1,4 @@
 import {Popup} from './Popup.js'
-import { popupImage, popupName} from '../utils/utils.js'
 export class PopupWithImage extends Popup {
 constructor(popupSelector) {
 super(popupSelector)
@@ -8,9 +7,9 @@ this._popupName = this._popup.querySelector('.popup__box-title')
 }
 open(data) {
     
-    this._popupName.textContent = data.nameOf;
+    this._popupName.textContent = data.name;
     this._popupImage.src = data.link;
-    this._popupImage.textContent = data.nameOf;
+    this._popupImage.textContent = data.name;
     super.open()
 }
 
