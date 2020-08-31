@@ -7,9 +7,9 @@ import {PopupWithSubmit} from '../components/PopupWithSubmit.js'
 import {UserInfo} from '../components/UserInfo.js'
 import {Api} from '../components/Api.js'
 import './index.css';
-import {config, popupOpenButtonEdite, popupOpenButtonAdd, name, about,
-   formAdd, myForm, nameInput, aboutInput, openAvatar, formAvatar, like, submitButton} from  '../utils/utils.js'
-   import {togglePreloader, preloaderForPopups} from  '../utils/preloader.js' 
+import {config, popupOpenButtonEdite, popupOpenButtonAdd,
+   formAdd, myForm, nameInput, aboutInput, openAvatar, formAvatar, submitButtonEdite, submitButtonAvatar, submitButtonAdd} from  '../utils/utils.js'
+   import {togglePreloader, preloaderForPopupEdite, preloaderForPopupAdd, preloaderForPopupAvatar} from  '../utils/preloader.js' 
 //   const popupWithImage = new PopupWithImage('popup_photo')
 // popupWithImage.setEventListeners()
 const api = new Api({
@@ -33,10 +33,10 @@ api.getAppInfo().then(res => {
     const popupWithImage = new PopupWithImage('popup_photo')
   const cardRender = new Section({ items: initialCards,
     renderer: (data) => {
-      rendering(data)
+      rendering(data, true)
     }
   }, '.elements');
-  function  rendering(data) {
+  function  rendering(data, toAppend) {
     const card = new Card({
       userId: profileInfo._id,
       data, 
@@ -56,7 +56,6 @@ api.getAppInfo().then(res => {
     },
     handleDeleteIconClick: (id) => {
        popupWithSubmit.setSubmitAction(() => {
-         console.log(id)
          api.deleteCard(id).then(() => {
            card.removeCard()
            popupWithSubmit.close()
@@ -66,8 +65,11 @@ api.getAppInfo().then(res => {
        
     }
    }, '.elements-template');
-    const cardElement = card.addCard();
-  cardRender.addItems(cardElement)
+   const cardElement = card.addCard();
+    if (toAppend) {
+    cardRender.addItemsAppend(cardElement)
+    } else {cardRender.addItems(cardElement)} 
+
   }
  
   api.getInformation().then(() => {
@@ -75,39 +77,39 @@ api.getAppInfo().then(res => {
    }) .catch(err => console.error(err))
        const popupAddWithForm = new PopupWithForm('popup_add', {
          formSubmitHandler: (item) => { 
-          preloaderForPopups(true, submitButton)
+          preloaderForPopupAdd(true, submitButtonAdd)
           const dataToSend = {name: item.place, link: item.link}
            api.createCard(dataToSend).then(res => {
-          rendering(res)
+          rendering(res, false)
             })
             .catch(err => console.error(err))
       .finally(_ =>  {
-        preloaderForPopups(false, submitButton)
+        preloaderForPopupAdd(false, submitButtonAdd)
          popupAddWithForm.close()
       })
          } })
     const popupEditeWithForm = new PopupWithForm('popup', { 
       formSubmitHandler: ({name, about}) => { 
-        preloaderForPopups(true, submitButton)
+        preloaderForPopupEdite(true, submitButtonEdite)
       api.editInformation({name, about}).then(() => {
          userInfo.setUserInfo({name, about})
       })
       .catch(err => console.error(err))
       .finally(_ =>  {
-        preloaderForPopups(false, submitButton)
+        preloaderForPopupEdite(false, submitButtonEdite)
         popupEditeWithForm.close()
       })
       } 
     }) 
      const popupAvatarWithForm = new PopupWithForm('popup_avatar', {
       formSubmitHandler:(avatar)=> {
-        preloaderForPopups(true, submitButton)
+        preloaderForPopupAvatar(true, submitButtonAvatar)
         api.editeAvatar(avatar).then(res => {
           openAvatar.style.backgroundImage = `url(${res.avatar})`
         })
         .catch(err => console.error(err))
         .finally(_ =>  {
-          preloaderForPopups(false, submitButton)
+          preloaderForPopupAvatar(false, submitButtonAvatar)
            popupAvatarWithForm.close()
         })
       }

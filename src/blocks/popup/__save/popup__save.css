@@ -1,5 +1,6 @@
 @import url(./_disabled/popup__save_disabled.css);
 @import url(./_add/popup__save_add.css);
+@import url(./_avatar/popup__save_avatar.css);
 .popup__save{
     width: 358px;
     height: 51px;

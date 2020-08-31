@@ -9,7 +9,6 @@ constructor(popupSelector) {
 }
 
 setEventListeners() {
-    console.log(this._popup)
     this._popup.addEventListener('submit', (evt) => {
         evt.preventDefault()
         this._handleSubmitCallback()
