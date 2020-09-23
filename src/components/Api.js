@@ -80,7 +80,12 @@ return fetch(`${this.baseUrl}/cards/${cardId}`, {
             headers: this.headers,
             body: JSON.stringify(item)
           })
-          .then(res => res.json() )
+          .then(res => {
+            if (res.ok) {
+              return res.json()
+            }
+            return Promise.reject(`Ошибка: ${res.status}`)
+          } )
     }
     editeAvatar(avatar) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {

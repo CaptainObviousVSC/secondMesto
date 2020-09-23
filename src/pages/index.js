@@ -59,7 +59,7 @@ api.getAppInfo().then(res => {
          api.deleteCard(id).then(() => {
            card.removeCard()
            popupWithSubmit.close()
-         })
+         }).catch(err => console.error(err))
        })
         popupWithSubmit.open()
        

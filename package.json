@@ -25,16 +25,18 @@
   },
   "scripts": {
     "build": "rm -rf dist && webpack",
-    "dev": "webpack-dev-server --open --watch"
+    "dev": "webpack-dev-server --open --watch",
+ "predeploy": "npm run build",
+   "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EASTATE/mesto.git"
+    "url": "git+https://github.com/CaptainObviousVSC/secondMesto.git"
   },
   "author": "Aziiik",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EASTATE/mesto/issues"
+    "url": "https://github.com/CaptainObviousVSC/mesto/issues"
   },
-  "homepage": "https://github.com/EASTATE/mesto#readme"
+  "homepage": "https://github.com/CaptainObviousVSC/secondmMsto#readme"
 }
